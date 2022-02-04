@@ -1,0 +1,31 @@
+
+import os
+
+# Complete the commonChild function below.
+def commonChild(s1, s2):
+    maxAt = {}
+    #By directly using max function all test cases were not running because of slow working functions
+    for i in range(len(s1)):
+        max_s1 = 0
+        for j in range(len(s2)):
+            sum_s2= max_s1 + 1
+
+            other = maxAt.get(j, 0)
+            if other > max_s1:
+                max_s1 = other
+
+            if s1[i] == s2[j]:
+                maxAt[j] = sum_s2
+    return max(maxAt.values(), default=0)
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s1 = input()
+
+    s2 = input()
+
+    result = commonChild(s1, s2)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
